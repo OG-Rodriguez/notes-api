@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
+
+    // Specify which fields are mass assignable
+    protected $fillable = [
+        'title', 'author', 'note_date', 'body', 'classification'
+    ];
 }

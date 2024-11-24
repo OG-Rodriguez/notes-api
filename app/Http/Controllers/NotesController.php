@@ -38,9 +38,22 @@ class NotesController extends Controller
     public function update(Request $request, $id)
     {
         $note = Note::findOrFail($id);
+
+        // Validate the request data
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'note_date' => 'required|date',
+            'body' => 'required',
+            'classification' => 'required',
+        ]);
+
+        // Update the note
         $note->update($request->all());
+
         return response()->json($note);
     }
+
 
     // Delete a note
     public function destroy($id)
